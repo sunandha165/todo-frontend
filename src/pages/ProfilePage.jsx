@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
-import { getTasks } from '../service/api';
+import { getTasks } from '../services/api';
+
 import { Chart, Line, Pie } from 'react-chartjs-2';
 import { Chart as ChartJS, ArcElement, CategoryScale, LinearScale, PointElement, LineElement } from 'chart.js';
 ChartJS.register(ArcElement, CategoryScale, LinearScale, PointElement, LineElement);

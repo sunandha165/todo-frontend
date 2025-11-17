@@ -1,5 +1,5 @@
 import axios from 'axios';
-const BASE = 'http://localhost:5000/api';
+const BASE = 'https://todo-backend-drqv.onrender.com/';
 
 const withAuth = (opts = {}) => {
   const token = localStorage.getItem('token');

@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import MiniCalendar from '../components/MiniCalendar';
 import TodoForm from '../components/TodoForm';
-import { getTasks, createTask, updateTask, deleteTask } from '../service/api';
+import { getTasks, createTask, updateTask, deleteTask } from '../services/api';
 import { useNavigate } from 'react-router-dom';
 
 export default function TasksPage(){
