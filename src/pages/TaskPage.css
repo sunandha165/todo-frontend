@@ -1,0 +1,72 @@
+.task-container {
+  padding: 20px;
+}
+
+.welcome-title {
+  font-size: 28px;
+  font-weight: bold;
+}
+
+.task-layout {
+  display: flex;
+  gap: 40px;
+  margin-top: 20px;
+}
+
+.left-section {
+  width: 300px;
+}
+
+.mini-calendar {
+  width: 100% !important;
+  border-radius: 10px;
+  padding: 10px;
+}
+
+.task-box {
+  margin-top: 20px;
+  padding: 15px;
+  border: 1px solid #ccc;
+  border-radius: 12px;
+}
+
+.task-box input {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #666;
+  border-radius: 8px;
+  margin-bottom: 10px;
+}
+
+.task-box button {
+  width: 100%;
+  padding: 10px;
+  background: black;
+  color: white;
+  border-radius: 8px;
+}
+
+.right-section {
+  flex: 1;
+}
+
+.task-list {
+  list-style: none;
+  padding: 0;
+}
+
+.task-list li {
+  background: #aee1f9;
+  padding: 12px;
+  border-radius: 8px;
+  margin-bottom: 10px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.del-btn {
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  font-size: 18px;
+}
