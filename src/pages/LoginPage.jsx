@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import axios from "axios";
 import { loginUser } from "../services/api";
 import { useNavigate } from "react-router-dom";
 
@@ -12,10 +13,18 @@ export default function LoginPage() {
 
     try {
       const res = await loginUser(form);
+
+      // Save user details
       localStorage.setItem("token", res.token);
       localStorage.setItem("userName", res.user.name);
       localStorage.setItem("userId", res.user.id);
+
+      // ⭐ IMPORTANT: Set token for all axios API calls
+      axios.defaults.headers.common["Authorization"] = "Bearer " + res.token;
+
       setMsg("Login Successful");
+
+      // Redirect to tasks page
       nav("/tasks");
     } catch (err) {
       setMsg(err.response?.data?.message || "Login failed");
@@ -28,7 +37,12 @@ export default function LoginPage() {
 
       <form
         onSubmit={handleSubmit}
-        style={{ display: "flex", flexDirection: "column", gap: 10, width: 320 }}
+        style={{
+          display: "flex",
+          flexDirection: "column",
+          gap: 10,
+          width: 320,
+        }}
       >
         <input
           placeholder="Email"

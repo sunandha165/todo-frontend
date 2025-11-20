@@ -10,15 +10,19 @@ export default function TasksPage(){
   const [tasks, setTasks] = useState([]);
   const nav = useNavigate();
 
-  useEffect(()=> {
-    const u = JSON.parse(localStorage.getItem('user') || 'null');
-    if (!u) {
-      nav('/login');
-      return;
-    }
-    setUserName(u.name);
-    load();
-  }, []);
+ useEffect(() => {
+  const name = localStorage.getItem("userName");
+  const token = localStorage.getItem("token");
+
+  if (!token) {
+    nav("/login");
+    return;
+  }
+
+  setUserName(name);
+  load();
+}, []);
+
 
   const load = async () => {
     try {
