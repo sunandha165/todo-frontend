@@ -14,17 +14,17 @@ export default function LoginPage() {
     try {
       const res = await loginUser(form);
 
-      // Save user details
+      // Save token + user info
       localStorage.setItem("token", res.token);
       localStorage.setItem("userName", res.user.name);
       localStorage.setItem("userId", res.user.id);
 
-      // ⭐ IMPORTANT: Set token for all axios API calls
+      // Set token for axios
       axios.defaults.headers.common["Authorization"] = "Bearer " + res.token;
 
       setMsg("Login Successful");
 
-      // Redirect to tasks page
+      // Redirect
       nav("/tasks");
     } catch (err) {
       setMsg(err.response?.data?.message || "Login failed");
