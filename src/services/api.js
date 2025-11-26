@@ -1,9 +1,6 @@
 import axios from "axios";
 
-// ⭐ USE YOUR REAL BACKEND URL HERE
-const BASE = "https://todo-backend-drqv.onrender.com/api";
-
-// Always include token when available
+// ⭐ ALWAYS ATTACH TOKEN
 axios.interceptors.request.use((req) => {
   const token = localStorage.getItem("token");
   if (token) {
@@ -11,6 +8,9 @@ axios.interceptors.request.use((req) => {
   }
   return req;
 });
+
+// ⭐ BACKEND URL
+const BASE = "https://todo-backend-drqv.onrender.com/api";
 
 // AUTH
 export const registerUser = (data) =>
