@@ -1,16 +1,15 @@
 import axios from "axios";
 
-// ⭐ ALWAYS ATTACH TOKEN
-axios.interceptors.request.use((req) => {
-  const token = localStorage.getItem("token");
-  if (token) {
-    req.headers.Authorization = `Bearer ${token}`;
-  }
-  return req;
-});
-
-// ⭐ BACKEND URL
+// ⭐ Backend URL
 const BASE = "https://todo-backend-drqv.onrender.com/api";
+
+// ⭐ Function that returns axios config with token
+const authConfig = () => {
+  const token = localStorage.getItem("token");
+  return token
+    ? { headers: { Authorization: `Bearer ${token}` } }
+    : {};
+};
 
 // AUTH
 export const registerUser = (data) =>
@@ -21,13 +20,13 @@ export const loginUser = (data) =>
 
 // TASKS
 export const getTasks = () =>
-  axios.get(`${BASE}/task`).then((r) => r.data);
+  axios.get(`${BASE}/task`, authConfig()).then((r) => r.data);
 
 export const createTask = (task) =>
-  axios.post(`${BASE}/task`, task).then((r) => r.data);
+  axios.post(`${BASE}/task`, task, authConfig()).then((r) => r.data);
 
 export const updateTask = (id, body) =>
-  axios.put(`${BASE}/task/${id}`, body).then((r) => r.data);
+  axios.put(`${BASE}/task/${id}`, body, authConfig()).then((r) => r.data);
 
 export const deleteTask = (id) =>
-  axios.delete(`${BASE}/task/${id}`).then((r) => r.data);
+  axios.delete(`${BASE}/task/${id}`, authConfig()).then((r) => r.data);
