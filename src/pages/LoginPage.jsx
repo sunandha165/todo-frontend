@@ -12,22 +12,18 @@ export default function LoginPage() {
     e.preventDefault();
 
     try {
+      // ⭐ Wake up Render backend
+      await axios.get("https://todo-backend-drqv.onrender.com");
+
+      // ⭐ Now login
       const res = await loginUser(form);
 
-      // Save token + user info
       localStorage.setItem("token", res.token);
       localStorage.setItem("userName", res.user.name);
-      localStorage.setItem("userId", res.user.id);
 
-      // Set token for axios
-      axios.defaults.headers.common["Authorization"] = "Bearer " + res.token;
-
-      setMsg("Login Successful");
-
-      // Redirect
       nav("/tasks");
     } catch (err) {
-      setMsg(err.response?.data?.message || "Login failed");
+      setMsg("Login failed");
     }
   };
 
