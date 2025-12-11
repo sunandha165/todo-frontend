@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const axiosClient = axios.create({
-  baseURL: "https://todo-backend-drqv.onrender.com",
+   baseURL: "https://todo-backend-drqv.onrender.com/api"
 });
 
 // Automatically attach token to every request
