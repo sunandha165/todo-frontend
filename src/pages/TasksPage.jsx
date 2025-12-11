@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import axios from "axios";
+import axiosClient from "../utils/axiosClient";   // ⭐ use axiosClient, NOT axios
 import MiniCalendar from "../components/MiniCalendar";
 import TodoForm from "../components/TodoForm";
 import { getTasks, createTask, updateTask, deleteTask } from "../services/api";
@@ -26,10 +26,9 @@ export default function TasksPage() {
 
   const load = async () => {
     try {
-      // ⭐ Wake up backend
-      await axios.get("https://todo-backend-drqv.onrender.com");
+      // ⭐ Use axiosClient so token is attached
+      await axiosClient.get("/");
 
-      // ⭐ Now get tasks
       const data = await getTasks();
       setTasks(data);
     } catch (err) {
